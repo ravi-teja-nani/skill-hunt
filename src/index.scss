@@ -1,0 +1,59 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+.app-header {
+  .logo {
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+
+.hamburger-menu {
+  .menu-list {
+    width: 9rem;
+    .menu-item-text {
+      span {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+
+    .menu-item {
+      cursor: pointer;
+      &.menu-item-active {
+        .menu-item-text {
+          span {
+            color: #1976d2;
+          }
+        }
+
+        svg {
+          color: #1976d2;
+        }
+      }
+    }
+  }
+}
+
+.projects-section {
+  display: flex;
+  justify-content: center;
+  .project-card {
+    width: 70%;
+    .project-cards-skills {
+      display: block;
+    }
+    .project-card-chip {
+      margin-bottom: 12px;
+    }
+  }
+
+}
