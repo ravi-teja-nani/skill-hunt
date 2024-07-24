@@ -1,14 +1,23 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import AddSkills from "./AddSkills";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
-import {SkillRating} from "./SkillRating";
-import LoadingButton from '@mui/lab/LoadingButton';
+import { SkillRating } from "./SkillRating";
+import LoadingButton from "@mui/lab/LoadingButton";
+import CompareSkill from "./charts/CompareSkill";
+import PercentagePieChart from "./charts/PercentagePieChart";
+
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Chip,
+  Button,
+  Stack,
+} from "@mui/material";
+
+const truncateText = (text, length) => {
+  return text.length > length ? text.substring(0, length) + "..." : text;
+};
 
 const skills = [
   { name: "React.js", id: 1, strength: 4 },
@@ -50,10 +59,10 @@ export default function ProjectsCard() {
             </Typography>
           </div>
           <Typography variant="body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in
-            euismod velit. In hac habitasse platea dictumst. Donec fringilla
-            condimentum erat consequat efficitur. Ut vitae erat et ex
-            porttito....
+            {truncateText(
+              "truncateTextLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ineuismod velit. In hac habitasse platea dictumst. Donec fringillacondimentum erat consequat efficitur. Ut vitae erat et exporttito",
+              100
+            )}
           </Typography>
           <Stack className="project-cards-skills" direction="row" spacing={0.5}>
             {skills.map((skill) => {
@@ -74,10 +83,16 @@ export default function ProjectsCard() {
         </CardActions>
       </Card>
       <SkillRating />
-      <AddSkills/>
+      <AddSkills />
       <LoadingButton loading variant="outlined">
         Submit
       </LoadingButton>
+
+      <Card className="project-card">
+        <CompareSkill />
+      </Card>
+
+      <PercentagePieChart />
     </>
   );
 }

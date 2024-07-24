@@ -1,7 +1,8 @@
-import {useState} from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { TextField } from "@mui/material";
 
 const skills = [
   { name: "React.js", id: 1, strength: 4 },
@@ -33,22 +34,20 @@ const skills = [
   { name: "Kotlin", id: 27, strength: 3 },
 ];
 
-export const SkillRating = ()  => {
+export const SkillRating = () => {
+  const [skillsRating, setSkillsRating] = useState(skills);
 
-   const [skillsRating, setSkillsRating] = useState(skills)
-
-   const handleRateChange = (event, value) => {
-      const { name } = event.target
+  const handleRateChange = (event, value) => {
+    const { name } = event.target;
     console.log({
       event: event.target.name,
-      value
-    })
+      value,
+    });
     const updatedSkills = structuredClone(skillsRating);
-    const updatedSkill = updatedSkills.find((skill) => skill.name === name)
-    updatedSkill.strength = value
-    setSkillsRating(updatedSkills)
-   }
-
+    const updatedSkill = updatedSkills.find((skill) => skill.name === name);
+    updatedSkill.strength = value;
+    setSkillsRating(updatedSkills);
+  };
 
   return (
     <Box
@@ -57,15 +56,23 @@ export const SkillRating = ()  => {
       }}
     >
       {skillsRating.map((skill) => {
-        return <Box key={skill.name}>
-          <Typography component="legend">{skill.name}</Typography>
-          <Rating
-            name={skill.name}
-            value={skill.strength}
-            onChange={handleRateChange}
-          />
-        </Box>;
+        return (
+          <Box key={skill.name}>
+            <Typography component="legend">{skill.name}</Typography>
+            <Rating
+              name={skill.name}
+              value={skill.strength}
+              onChange={handleRateChange}
+            />
+            <TextField
+              required
+              id="outlined-required"
+              label="Years of experience"
+              type="number"
+            />
+          </Box>
+        );
       })}
     </Box>
   );
-}
+};
