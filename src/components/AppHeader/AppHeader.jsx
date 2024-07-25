@@ -10,44 +10,41 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 const navItems = [
   {
     id: "projects",
     name: "Projects",
     icon: <WorkOutlineOutlinedIcon />,
+    path: "/projects"
   },
   {
     id: "profile",
     name: "Profile",
     icon: <PersonOutlineOutlinedIcon />,
+    path: "/profile"
+
   },
   {
-    id: "admin",
-    name: "Admin",
-    icon: <AdminPanelSettingsOutlinedIcon />,
+    id: "manage",
+    name: "Manage projects",
+    icon: <ManageAccountsOutlinedIcon />,
+    path: "/manage-projects"
+
   },
 ];
+
 
 export default function AppHeader({ children }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuItem, setMenuItem] = useState("projects");
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => {
     setDrawerOpen(open);
-    toast.success('🦄 Wow so easy!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
   };
 
   return (
@@ -82,13 +79,16 @@ export default function AppHeader({ children }) {
           onClose={() => toggleDrawer(false)}
         >
           <List className="menu-list">
-            {navItems.map(({ id, name, icon }) => (
+            {navItems.map(({ id, name, icon, path }) => (
               <ListItem
                 className={
                   menuItem === id ? "menu-item menu-item-active" : "menu-item"
                 }
                 key={id}
-                onClick={() => setMenuItem(id)}
+                onClick={() => {
+                  navigate(path)
+                  setMenuItem(id)
+                }}
               >
                 <IconButton
                   edge="start"

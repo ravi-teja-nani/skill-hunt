@@ -1,9 +1,4 @@
-import * as React from "react";
-import AddSkills from "./AddSkills";
-import { SkillRating } from "./SkillRating";
-import LoadingButton from "@mui/lab/LoadingButton";
-import CompareSkill from "./charts/CompareSkill";
-import PercentagePieChart from "./charts/PercentagePieChart";
+import PieChartIcon from "@mui/icons-material/PieChart";
 
 import {
   Card,
@@ -14,6 +9,9 @@ import {
   Button,
   Stack,
 } from "@mui/material";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+
+import { useNavigate } from "react-router-dom";
 
 const truncateText = (text, length) => {
   return text.length > length ? text.substring(0, length) + "..." : text;
@@ -27,28 +25,9 @@ const skills = [
   { name: "Express.js", id: 5, strength: 4 },
   { name: "JavaScript", id: 6, strength: 5 },
   { name: "TypeScript", id: 7, strength: 4 },
-  { name: "HTML5", id: 8, strength: 5 },
-  { name: "CSS3", id: 9, strength: 5 },
-  { name: "Sass", id: 10, strength: 4 },
-  { name: "Less", id: 11, strength: 3 },
-  { name: "Bootstrap", id: 12, strength: 4 },
-  { name: "Tailwind CSS", id: 13, strength: 4 },
-  { name: "jQuery", id: 14, strength: 3 },
-  { name: "Redux", id: 15, strength: 4 },
-  { name: "MobX", id: 16, strength: 3 },
-  { name: "GraphQL", id: 17, strength: 4 },
-  { name: "REST APIs", id: 18, strength: 5 },
-  { name: "Webpack", id: 19, strength: 4 },
-  { name: "Gulp", id: 20, strength: 3 },
-  { name: "Parcel", id: 21, strength: 3 },
-  { name: "Python", id: 22, strength: 5 },
-  { name: "Django", id: 23, strength: 4 },
-  { name: "Flask", id: 24, strength: 4 },
-  { name: "Java", id: 25, strength: 5 },
-  { name: "Spring Boot", id: 26, strength: 4 },
-  { name: "Kotlin", id: 27, strength: 3 },
 ];
 export default function ProjectsCard() {
+  const navigate = useNavigate();
   return (
     <>
       <Card className="project-card">
@@ -57,11 +36,19 @@ export default function ProjectsCard() {
             <Typography variant="h5" component="div">
               React js rquirement
             </Typography>
+
+            <Chip
+              variant="outlined"
+              color="info"
+              size="small"
+              icon={<PieChartIcon />}
+              label="88%"
+            />
           </div>
-          <Typography variant="body2">
+          <Typography variant="body2" className="project-desc">
             {truncateText(
               "truncateTextLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ineuismod velit. In hac habitasse platea dictumst. Donec fringillacondimentum erat consequat efficitur. Ut vitae erat et exporttito",
-              100
+              200
             )}
           </Typography>
           <Stack className="project-cards-skills" direction="row" spacing={0.5}>
@@ -78,21 +65,29 @@ export default function ProjectsCard() {
           </Stack>
         </CardContent>
 
-        <CardActions>
-          <Button size="small">View Project</Button>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button
+            onClick={() => {
+              navigate("/view-project");
+            }}
+            size="small"
+          >
+            View Project
+          </Button>
+          <Chip
+            variant="outlined"
+            color="primary"
+            size="small"
+            icon={<PersonOutlineOutlinedIcon />}
+            label="Rajeswar acha"
+          />
         </CardActions>
       </Card>
-      <SkillRating />
-      <AddSkills />
-      <LoadingButton loading variant="outlined">
-        Submit
-      </LoadingButton>
-
-      <Card className="project-card">
-        <CompareSkill />
-      </Card>
-
-      <PercentagePieChart />
     </>
   );
 }

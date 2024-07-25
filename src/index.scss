@@ -46,8 +46,22 @@ body {
 .projects-section {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   .project-card {
+    -webkit-box-shadow: -1px 2px 11px 0px rgba(168, 158, 168, 1);
+    -moz-box-shadow: -1px 2px 11px 0px rgba(168, 158, 168, 1);
+    box-shadow: -1px 2px 11px 0px rgba(168, 158, 168, 1);
     width: 70%;
+    .MuiCardContent-root {
+      border-bottom: 1px solid #7e75755c;
+    }
+    .project-card-header {
+      border-bottom: 1px solid #7e75755c;
+      margin-bottom: 12px;
+      padding-bottom: 13px;
+      display: flex;
+      justify-content: space-between;
+    }
     .project-cards-skills {
       display: block;
     }
@@ -55,5 +69,103 @@ body {
       margin-bottom: 12px;
     }
   }
+}
 
+.view-project-cards-skills {
+  display: block;
+
+}
+
+.screen-heading {
+  .screen-heading-title {
+    display: flex;
+    padding: 12px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #27272f;
+    margin-bottom: 14px;
+    margin-left: 58px;
+  }
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+}
+.project-desc {
+  margin-bottom: 26px !important;
+}
+
+.profile-root {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 68px;
+  width: 30%;
+}
+
+.add-skills-componnet {
+  margin-top: 12px;
+}
+
+.view-profile-root {
+  margin-bottom: 120px !important;
+}
+
+.add-project-header {
+  display: flex;
+  padding: 10px;
+}
+.create-project-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 69px;
+
+}
+
+.create-requirement {
+  display: flex;
+  justify-content: space-between;
+  .skills-form {
+    margin-right: 50px;
+  }
+}
+
+.view-project-root {
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    width: 43%;
+    margin-left: 72px;
+  }
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    .mathing-label {
+      font-size: 22px;
+      font-weight: bold;
+      color: #6d696f;
+      margin-top: 5px;
+    }
+  }
+  .view-section {
+    display: flex;
+  }
+  .view-project-cards-skills {
+    display: block;
+    .MuiChip-root {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.projects-applicants-tab {
+  padding: 24px 71px;
 }

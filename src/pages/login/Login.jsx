@@ -11,7 +11,7 @@ export const Login = () => {
 
   const handleLogin = (event) => {
     login();
-    navigate("/");
+    navigate("/projects");
     // navigate("/signup")
     event.preventDefault();
     // Handle login logic here
