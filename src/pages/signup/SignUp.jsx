@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Box, Typography, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { toast } from 'react-toastify';
+import { apiBaseUrl } from '../../lib/config';
+
 
 const SignupPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [userId, setUserId] = useState('');
+  const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [role, setRole] = useState('');
@@ -16,16 +20,40 @@ const SignupPage = () => {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    navigate("/login")
-
-    console.log({
+    axios.post(apiBaseUrl + "/api/users/new", {
+      id: null,
       firstName,
       lastName,
       email,
-      userId,
+      username: userName,
       password,
       role,
-    });
+    })
+    .then(() => {
+      toast.success('User registered successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      navigate("/login")
+    }).catch(() => {
+      toast.error('Sorry, right now we are not able to process the request', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    })
+
   };
 
   const isFormValid = () => {
@@ -33,7 +61,6 @@ const SignupPage = () => {
       firstName.trim() !== '' &&
       lastName.trim() !== '' &&
       email.trim() !== '' &&
-      userId.trim() !== '' &&
       password.trim() !== '' &&
       confirmPassword.trim() !== '' &&
       role.trim() !== '' &&
@@ -105,12 +132,12 @@ const SignupPage = () => {
             margin="normal"
             required
             fullWidth
-            id="userId"
-            label="User ID"
-            name="userId"
+            id="username"
+            label="User Name"
+            name="username"
             autoComplete="username"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            value={userName}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -150,8 +177,9 @@ const SignupPage = () => {
             value={role}
             onChange={(e) => setRole(e.target.value)}
           >
-            <MenuItem value="hr">HR</MenuItem>
-            <MenuItem value="manager">Manager</MenuItem>
+            <MenuItem value="admin">HR</MenuItem>
+            <MenuItem value="admin">Manager</MenuItem>
+            <MenuItem value="user">Employer</MenuItem>
           </TextField>
           <Button
             type="submit"

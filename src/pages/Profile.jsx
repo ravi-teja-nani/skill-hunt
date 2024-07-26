@@ -21,7 +21,7 @@ export const Profile = () => {
      let updatedUserSkills = structuredClone(skillsdata)
      updatedUserSkills = updatedUserSkills.map(skill => ({
       ...skill,
-      exp: skill.exp ?? 0,
+      experience: skill.experience ?? 0,
       strength: skill.strength ?? 0,
      }))
      setUserSkills(updatedUserSkills)

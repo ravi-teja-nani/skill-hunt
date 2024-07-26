@@ -47,7 +47,7 @@ export default function ProjectsCard() {
           </div>
           <Typography variant="body2" className="project-desc">
             {truncateText(
-              "truncateTextLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ineuismod velit. In hac habitasse platea dictumst. Donec fringillacondimentum erat consequat efficitur. Ut vitae erat et exporttito",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ineuismod velit. In hac habitasse platea dictumst. Donec fringillacondimentum erat consequat efficitur. Ut vitae erat et exporttito",
               200
             )}
           </Typography>

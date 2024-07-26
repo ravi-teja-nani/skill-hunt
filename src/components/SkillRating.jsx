@@ -29,7 +29,7 @@ export const SkillRating = ({ skillData, onSkillRatehage, onExperinceChange }) =
     const { name, value } = event.target;
     const updatedSkills = structuredClone(skillData);
     const updatedSkill = updatedSkills.find((skill) => skill.id == name);
-    updatedSkill.exp = value ? Number(value) : 0;
+    updatedSkill.experience = value ? Number(value) : 0;
     onExperinceChange(updatedSkills)
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { Login } from "./pages/login/Login";
@@ -10,66 +10,74 @@ import { Profile } from "./pages/Profile";
 import { ManageProjects } from "./pages/ManageProjects";
 import { CreateProject } from "./pages/CreateProject";
 import { ViewApplicantProfile } from "./pages/ViewApplicantProfile";
+import { Provider } from 'react-redux';
+import { store } from './store'
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route
-            path="/projects"
-            element={
-              <ProtectedRoute>
-                <Projects />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/view-project"
-            element={
-              <ProtectedRoute>
-                <ViewProject />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/manage-projects"
-            element={
-              <ProtectedRoute>
-                <ManageProjects />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/create-project"
-            element={
-              <ProtectedRoute>
-                <CreateProject />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/view-applicant-profile/:applicantid"
-            element={
-              <ProtectedRoute>
-                <ViewApplicantProfile />
-              </ProtectedRoute>
-            }
-          />
+    <Provider store={store}>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
 
-        </Routes>
-      </Router>
-    </AuthProvider>
+            <Route path="/signup" element={<SignupPage />} />
+            <Route
+              path="/projects"
+              element={
+                <ProtectedRoute>
+                  <Projects />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/view-project"
+              element={
+                <ProtectedRoute>
+                  <ViewProject />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/manage-projects"
+              element={
+                <ProtectedRoute>
+                  <ManageProjects />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/create-project"
+              element={
+                <ProtectedRoute>
+                  <CreateProject />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/view-applicant-profile/:applicantid"
+              element={
+                <ProtectedRoute>
+                  <ViewApplicantProfile />
+                </ProtectedRoute>
+              }
+            />
+
+          </Routes>
+        </Router>
+      </AuthProvider>
+
+    </Provider>
+
   );
 };
 

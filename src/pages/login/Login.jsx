@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Container, TextField, Button, Box, Typography } from '@mui/material';
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { apiBaseUrl } from '../../lib/config';
 
 export const Login = () => {
   const { login } = useAuth();
@@ -11,14 +14,26 @@ export const Login = () => {
 
   const handleLogin = (event) => {
     login();
-    navigate("/projects");
-    // navigate("/signup")
     event.preventDefault();
-    // Handle login logic here
-    console.log({
+    axios.post(apiBaseUrl + "/api/users/authenticate", {
       username,
       password,
-    });
+    })
+    .then((response) => {
+      sessionStorage.setItem("token", response.data)
+      navigate("/projects")
+    }).catch(() => {
+      toast.error('User does not exist', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    })
   };
 
   const isFormValid = () => {
@@ -71,6 +86,16 @@ export const Login = () => {
             disabled={!isFormValid()}
           >
             Login
+          </Button>
+          <Button
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={() => {
+              navigate("/signup")
+            }}
+          >
+            Sign up
           </Button>
         </Box>
       </Box>

@@ -4,6 +4,8 @@ import { TextField, Box, Button } from "@mui/material";
 import AddSkills from '../components/AddSkills';
 import { SkillRating } from '../components/SkillRating';
 import { useState } from "react";
+import api from "../lib/api";
+import { toast } from "react-toastify";
 
 const staticSkills = [{ name: 'React.js', id: 1 },
 { name: 'Angular', id: 2 },
@@ -22,7 +24,7 @@ export const CreateProject = () => {
     let updatedProjetctSkills = structuredClone(skillsdata)
     updatedProjetctSkills = updatedProjetctSkills.map(skill => ({
       ...skill,
-      exp: skill.exp ?? 0,
+      experience: skill.experience ?? 0,
       strength: skill.strength ?? 0,
     }))
     setProjectSkills(updatedProjetctSkills)
@@ -34,6 +36,42 @@ export const CreateProject = () => {
 
   const handleSkillExperinece = (updatedSkills) => {
     setProjectSkills(updatedSkills)
+  }
+
+  const handleCreatePost = () => {
+    api.post(import.meta.env.VITE_BASE_URL + "/api/jobPost/createJobPost", {
+     id: null,
+     title,
+     descr: desc,
+     postedBy: "name",
+     skillDetails: projectSkills,
+     totalExperience: projectExp,
+    })
+    .then((response) => {
+      sessionStorage.setItem("token", response.data)
+      navigate("/projects")
+      toast.success('Project created', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }).catch(() => {
+      toast.error('Something went wrong', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    })
   }
 
   return (
@@ -79,7 +117,7 @@ export const CreateProject = () => {
             <Button
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => { }}
+              onClick={handleCreatePost}
             >
               Create
             </Button>
