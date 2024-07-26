@@ -34,7 +34,7 @@ export default function ProjectsCard() {
         <CardContent>
           <div className="project-card-header">
             <Typography variant="h5" component="div">
-              React js rquirement
+              Full stack rquirement
             </Typography>
 
             <Chip

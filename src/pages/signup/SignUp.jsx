@@ -20,39 +20,50 @@ const SignupPage = () => {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    axios.post(apiBaseUrl + "/api/users/new", {
-      id: null,
-      firstName,
-      lastName,
-      email,
-      username: userName,
-      password,
-      role,
-    })
-    .then(() => {
-      toast.success('User registered successfully!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-      navigate("/login")
-    }).catch(() => {
-      toast.error('Sorry, right now we are not able to process the request', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    })
+    toast.success('User registered successfully!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+    navigate("/login")
+    // axios.post(apiBaseUrl + "/api/users/new", {
+    //   id: null,
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   username: userName,
+    //   password,
+    //   role,
+    // })
+    // .then(() => {
+    //   toast.success('User registered successfully!', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    //   navigate("/login")
+    // }).catch(() => {
+    //   toast.error('Sorry, right now we are not able to process the request', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    // })
 
   };
 

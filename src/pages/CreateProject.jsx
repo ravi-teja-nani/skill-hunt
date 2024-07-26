@@ -6,6 +6,7 @@ import { SkillRating } from '../components/SkillRating';
 import { useState } from "react";
 import api from "../lib/api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const staticSkills = [{ name: 'React.js', id: 1 },
 { name: 'Angular', id: 2 },
@@ -18,6 +19,7 @@ export const CreateProject = () => {
   const [title, setTitle] = useState('');
   const [desc, setExp] = useState('');
   const [projectExp, setProjectExp] = useState(0);
+  const navigate = useNavigate()
 
 
   const handleAddSkill = (skillsdata) => {
@@ -39,39 +41,50 @@ export const CreateProject = () => {
   }
 
   const handleCreatePost = () => {
-    api.post(import.meta.env.VITE_BASE_URL + "/api/jobPost/createJobPost", {
-     id: null,
-     title,
-     descr: desc,
-     postedBy: "name",
-     skillDetails: projectSkills,
-     totalExperience: projectExp,
-    })
-    .then((response) => {
-      sessionStorage.setItem("token", response.data)
+    toast.success('Project created', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
       navigate("/projects")
-      toast.success('Project created', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    }).catch(() => {
-      toast.error('Something went wrong', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    })
+    // api.post(import.meta.env.VITE_BASE_URL + "/api/jobPost/createJobPost", {
+    //  id: null,
+    //  title,
+    //  descr: desc,
+    //  postedBy: "name",
+    //  skillDetails: projectSkills,
+    //  totalExperience: projectExp,
+    // })
+    // .then((response) => {
+    //   sessionStorage.setItem("token", response.data)
+    //   navigate("/projects")
+    //   toast.success('Project created', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    // }).catch(() => {
+    //   toast.error('Something went wrong', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    // })
   }
 
   return (

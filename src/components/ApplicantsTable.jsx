@@ -7,8 +7,8 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 
 
 const rows = [
-    { id: 12323, title: 'React js requirement', applicantName: 'john doe', match: "23", appicantId: 232424 },
-    { id: 434342, title: 'Node js requirement', applicantName: 'john doe', match: "23", appicantId: 454545 },
+    { id: 12323, title: 'React js requirement', applicantName: 'john doe', match: "89", appicantId: 232424 },
+    { id: 434342, title: 'Node js requirement', applicantName: 'paul doe', match: "88", appicantId: 454545 },
 ];
 
 export default function ApplicantsTable() {

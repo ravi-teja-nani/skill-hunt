@@ -27,17 +27,17 @@ const data = [
     actual: 3,
   },
   {
-    name: "Node.js",
+    name: "D3.js",
     required: 4,
     actual: 5,
   },
   {
-    name: "React.js",
+    name: "Java",
     required: 5,
     actual: 3,
   },
   {
-    name: "Node.js",
+    name: "SQL",
     required: 4,
     actual: 5,
   },

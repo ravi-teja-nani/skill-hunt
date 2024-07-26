@@ -25,14 +25,14 @@ export const ViewProject = () => {
                         <TextField
                             margin="normal"
                             label="Project Name"
-                            value="REact js requiremet"
+                            value="Full stack requiremet"
                             disabled
                         />
                         <TextField
                             margin="normal"
                             disabled
                             label="Proejct Description "
-                            value={"oogle Chat: An intelligent messaging app, built for teams. Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA"}
+                            value={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae nulla urna. Donec vel nisl et urna egestas ultrices ac id ex. Nulla facilisi. Cras diam quam, lacinia vitae velit nec, iaculis cursus augue. Nam at nisi porta, volutpat purus sed, sodales dui. Donec pretium justo ipsum, non pharetra lacus pharetra ut"}
                             rows={8}
                             multiline
                         />

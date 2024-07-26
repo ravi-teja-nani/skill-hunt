@@ -15,25 +15,26 @@ export const Login = () => {
   const handleLogin = (event) => {
     login();
     event.preventDefault();
-    axios.post(apiBaseUrl + "/api/users/authenticate", {
-      username,
-      password,
-    })
-    .then((response) => {
-      sessionStorage.setItem("token", response.data)
-      navigate("/projects")
-    }).catch(() => {
-      toast.error('User does not exist', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    })
+    navigate("/projects")
+    // axios.post(apiBaseUrl + "/api/users/authenticate", {
+    //   username,
+    //   password,
+    // })
+    // .then((response) => {
+    //   sessionStorage.setItem("token", response.data)
+    //   navigate("/projects")
+    // }).catch(() => {
+    //   toast.error('User does not exist', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    // })
   };
 
   const isFormValid = () => {

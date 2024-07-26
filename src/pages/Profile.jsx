@@ -4,7 +4,8 @@ import { Header } from "../components/Header";
 import { TextField, Box, Button } from "@mui/material";
 import AddSkills from '../components/AddSkills';
 import { SkillRating } from '../components/SkillRating';
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const staticSkills = [{ name: 'React.js', id: 1 },
 { name: 'Angular', id: 2},
@@ -16,6 +17,7 @@ export const Profile = () => {
   const [summary, setSummary] = useState('');
   const [experience, setExperinece] = useState('');
   const [userSkills, setUserSkills] = useState([]);
+  const navigate = useNavigate();
   
   const handleAddSkill = (skillsdata) => {
      let updatedUserSkills = structuredClone(skillsdata)
@@ -38,7 +40,7 @@ export const Profile = () => {
   return (
     <AppHeader>
       <section className="view-profile-root">
-        <Header name="Welcome name" />
+        <Header name="Welcome Ravi!" />
         <div className="profile-root">
           <div className="profile-form">
             <TextField
@@ -102,7 +104,20 @@ export const Profile = () => {
             <Button
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => { }}
+              onClick={() => {
+
+                toast.success('Profile updated!', {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  });
+                navigate("/projects")
+               }}
             >
               Save
             </Button>
